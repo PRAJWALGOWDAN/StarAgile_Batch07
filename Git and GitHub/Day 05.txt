@@ -108,6 +108,19 @@ Merge Branch 2 with Master Branch
 Merge Failure - Conflict
 
 WHYYYY?????
+ans: Sure 👍 here’s a simple, interview-friendly explanation:
+
+Master has “Hello World.”
+
+Branch1 changes it to Java code → merged successfully into master.
+
+Now master has Java code.
+
+Branch2 had changed the same file to Python code (from “Hello World”).
+
+When merging branch2 into master, Git sees both master (Java) and branch2 (Python) changed the same lines differently — so it creates a merge conflict.
+
+👉 Simple reason: Both branches edited the same file differently, so Git can’t decide which change to keep.
 
 
 => GIT HUB - Deleting a repo, Changing the Visibility
@@ -159,6 +172,7 @@ This is manual work
 We need to Automate the process of Build and Deployment - JENKINS
 Jenkins is Build and Deployment Automation Tool
 It is also called as CI&CD Tool
+
 
 
 
