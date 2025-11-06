@@ -134,6 +134,77 @@ sudo yum install httpd -y
 sudo systemctl enable httpd
 sudo systemctl start httpd
 
+---------------------------------
+Execute this cmd's in your EC2 instance to edit sudoers file and give jenkins all type of permissions
+---------------------------------
+2️⃣ Open a new sudoers file for Jenkins
+
+Run this safe command (it uses visudo, which checks syntax before saving):
+
+sudo visudo -f /etc/sudoers.d/jenkins
+
+3️⃣ Add this line inside the file
+
+Paste the following:
+
+jenkins ALL=(ALL) NOPASSWD: ALL
+
+
+➡️ This means:
+
+jenkins can run any command as any user (ALL=(ALL))
+
+NOPASSWD: = no password required
+So Jenkins jobs won’t fail when they run sudo commands.
+
+4️⃣ Save and exit
+
+If the editor is nano:
+
+Press Ctrl + O, then Enter to save
+
+Press Ctrl + X to exit
+
+If the editor is vi:
+
+Press Esc
+
+Type :wq
+
+Press Enter
+
+5️⃣ Verify the file permissions
+
+Make sure it’s owned by root and not writable by others:
+
+sudo chmod 0440 /etc/sudoers.d/jenkins
+sudo chown root:root /etc/sudoers.d/jenkins
+
+6️⃣ Confirm it’s valid
+
+Run:
+
+sudo visudo -c
+
+
+✅ Expected output:
+
+/etc/sudoers: parsed OK
+/etc/sudoers.d/jenkins: parsed OK
+
+7️⃣ Test Jenkins sudo access
+
+Check again:
+
+sudo -l -U jenkins
+
+
+✅ Expected output:
+
+User jenkins may run the following commands on this host:
+    (ALL) NOPASSWD: ALL
+---------------------------------------------------------------------------------------------------------------------------------
+
 Assignment
 
 5. This Project is Parameterized
@@ -162,6 +233,7 @@ Ex: Lets say i want only 2 builds to happen in 1 hour of time
 7. Integrate the Public GitHub Repo with Jenkins 
 
 8. Build the code available in Public Repo using Jenkins
+
 
 
 
